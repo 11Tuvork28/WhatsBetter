@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\chats;
+use App\Models\chat;
 use Illuminate\Http\Request;
 
-class ChatsController extends Controller
+class ChatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,7 +44,7 @@ class ChatsController extends Controller
      * @param  \App\Models\chats  $chats
      * @return \Illuminate\Http\Response
      */
-    public function show(chats $chats)
+    public function show(chat $chats)
     {
         //
     }
@@ -55,7 +55,7 @@ class ChatsController extends Controller
      * @param  \App\Models\chats  $chats
      * @return \Illuminate\Http\Response
      */
-    public function edit(chats $chats)
+    public function edit(chat $chats)
     {
         //
     }
@@ -67,7 +67,7 @@ class ChatsController extends Controller
      * @param  \App\Models\chats  $chats
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, chats $chats)
+    public function update(Request $request, chat $chats)
     {
         //
     }
@@ -78,7 +78,7 @@ class ChatsController extends Controller
      * @param  \App\Models\chats  $chats
      * @return \Illuminate\Http\Response
      */
-    public function destroy(chats $chats)
+    public function destroy(chat $chats)
     {
         //
     }
