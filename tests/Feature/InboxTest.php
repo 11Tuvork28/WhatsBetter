@@ -8,7 +8,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
+use function PHPUnit\Framework\assertNotNull;
 use function PHPUnit\Framework\assertNotSame;
+use function PHPUnit\Framework\assertSame;
 
 class InboxTest extends TestCase
 {
@@ -35,35 +37,24 @@ class InboxTest extends TestCase
      */
     public function test_inbox_viewable()
     {
-        Inbox::factory()->create();
-        $this->withOutExceptionHandling();
-        $response = $this->get('/inbox/1');
-
-        $response->assertStatus(200);
-    }
-    public function test_inbox_missing_id()
-    {
+        Inbox::factory()->count(10)->create();
         $response = $this->get('/inbox');
-
-        $response->assertStatus(404);
+        $response->assertStatus(200);
     }
     public function test_inbox_creation()
     {
-        $this->withOutExceptionHandling();
         $response = $this->post('/inbox');
         $inbox = Inbox::first();
-        $response->assertCreated()->assertJson([
-            'id' => $inbox->id,
-            'user_id' => $inbox->user->id,
-        ]);
-    }
-    public function test_inbox_deletion()
-    {
-        $this->withOutExceptionHandling();
-        Inbox::factory()->create()->save();
-        $inbox = Inbox::first();
-        $response = $this->delete('/inbox/' . $inbox->id);
         $response->assertStatus(200);
-        assertNotSame($inbox->id, Inbox::first()->id);
+        assertNotNull($inbox->user_id, User::first()->id);
     }
+    #public function test_inbox_deletion()
+    #{
+    #  $this->withOutExceptionHandling();
+    #  Inbox::factory()->create()->save();
+    # $inbox = Inbox::first();
+    # $response = $this->delete('/inbox/' . $inbox->id);
+    #  $response->assertStatus(200);
+    #   assertNotSame($inbox->id, Inbox::first()->id);
+    #}
 }

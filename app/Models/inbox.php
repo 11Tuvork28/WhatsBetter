@@ -16,4 +16,8 @@ class inbox extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function inboxmessage()
+    {
+        return $this->hasOne(inboxMessage::class);
+    }
 }

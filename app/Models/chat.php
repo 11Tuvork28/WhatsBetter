@@ -12,4 +12,8 @@ class chat extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     protected $fillable = ['name'];
+    public function inboxmessage()
+    {
+        return $this->hasOne(inboxMessage::class);
+    }
 }
