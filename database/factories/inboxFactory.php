@@ -14,7 +14,7 @@ class InboxFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(0, 10),
         ];
     }
 }

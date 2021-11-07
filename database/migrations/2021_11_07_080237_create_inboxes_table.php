@@ -15,6 +15,7 @@ class CreateInboxesTable extends Migration
     {
         Schema::create('inboxes', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }

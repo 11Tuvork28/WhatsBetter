@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\inbox;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InboxController extends Controller
 {
@@ -14,7 +16,7 @@ class InboxController extends Controller
      */
     public function index()
     {
-        //
+        return response('No inbox id given', 404);
     }
 
     /**
@@ -24,7 +26,6 @@ class InboxController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,6 +37,10 @@ class InboxController extends Controller
     public function store(Request $request)
     {
         //
+        $inbox = Inbox::create(
+            ['user_id' => Auth::id()]
+        );
+        return response()->json($inbox, 201);
     }
 
     /**
@@ -80,6 +85,6 @@ class InboxController extends Controller
      */
     public function destroy(inbox $inbox)
     {
-        //
+        $inbox->delete();
     }
 }
