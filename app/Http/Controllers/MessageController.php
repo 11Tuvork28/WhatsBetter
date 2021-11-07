@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\message;
+use App\Models\chat;
+use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -14,7 +17,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        Message::all(['message', 'chat_id', 'sender_id', 'created_at'])->where('user_id', '=', Auth::id());
     }
 
     /**
@@ -35,7 +38,13 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $chat = chat::findOrFail($request->chat_id);
+        $user = User::findOrFail($request->sender_id);
+        return Message::Create([
+            'message' => $request->message,
+            'sender_id' => $user->id,
+            'chat_id' => $chat->id
+        ]);
     }
 
     /**
@@ -78,8 +87,8 @@ class MessageController extends Controller
      * @param  \App\Models\message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(message $message)
+    public function destroy(Message $message)
     {
-        //
+        Message::destroy($message->id);
     }
 }

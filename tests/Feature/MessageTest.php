@@ -2,18 +2,17 @@
 
 namespace Tests\Feature;
 
-use App\Models\inbox;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\message;
+use App\Models\Chat;
 
-use function PHPUnit\Framework\assertNotNull;
 use function PHPUnit\Framework\assertNotSame;
 use function PHPUnit\Framework\assertNull;
-use function PHPUnit\Framework\assertSame;
 
-class InboxTest extends TestCase
+class MessageTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -36,26 +35,25 @@ class InboxTest extends TestCase
      *
      * @return void
      */
-    public function test_inbox_viewable()
+    public function test_see_all_users_messages()
     {
-        Inbox::factory()->count(10)->create();
-        $response = $this->get('/inbox');
+        $response = $this->get('/message');
+
         $response->assertStatus(200);
     }
-    public function test_inbox_creation()
+    public function test_write_a_message()
     {
-        $response = $this->post('/inbox');
-        $inbox = Inbox::first();
-        $response->assertStatus(200);
-        assertNotNull($inbox->user_id, User::first()->id);
+        Chat::factory()->create()->save();
+        $response = $this->json('POST', '/message', ['sender_id' => User::first()->id, 'message' => "test", 'chat_id' => Chat::first()->id]);
+
+        $response->assertCreated();
     }
-    public function test_inbox_deletion()
+    public function test_delete_a_message()
     {
-        $this->withOutExceptionHandling();
-        Inbox::factory()->create()->save();
-        $inbox = Inbox::first();
-        $response = $this->delete('/inbox/' . $inbox->id);
+        message::factory()->create()->save();
+        $message = message::first();
+        $response = $this->json('DELETE', '/message/' . $message->id);
         $response->assertStatus(200);
-        assertNull(Inbox::first());
+        assertNull(message::first());
     }
 }

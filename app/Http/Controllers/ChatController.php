@@ -17,8 +17,7 @@ class ChatController extends Controller
     public function index()
     {
         $ids = chatMember::all('chat_id')->where('id', '=', Auth::id());
-        $data = chat::find($ids);
-        echo $data;
+        $data = Chat::find($ids);
         // return view("name", $data)
     }
 
@@ -29,7 +28,6 @@ class ChatController extends Controller
      */
     public function create()
     {
-        echo "test";
     }
 
     /**

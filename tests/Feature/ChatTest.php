@@ -4,14 +4,13 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\chat;
+use App\Models\Chat;
 use App\Models\chatMember;
 use function PHPUnit\Framework\assertSame;
 
-class chatTest extends TestCase
+class ChatTest extends TestCase
 {
     protected function setUp(): void
     {
