@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class inbox extends Model
 {
     use HasFactory;
+    protected $table = 'inboxes';
+    protected $primaryKey = 'id';
+    public $incrementing = true;
+    protected $fillable = ['user_id'];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
