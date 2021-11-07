@@ -41,7 +41,7 @@ class ChatTest extends TestCase
     public function test_create_chat_with_one_member()
     {
         $user = User::first();
-        $response = $this->json('POST', '/chat', ['member' => '1', 'name' => "test"]);
+        $response = $this->json('POST', '/chat', ['member' => 1, 'name' => "test"]);
         $chat = chat::first();
         $members = chatMember::first();
         $response->assertStatus(200);
