@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\chat;
+use App\Models\chatMember;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
@@ -14,7 +16,10 @@ class ChatController extends Controller
      */
     public function index()
     {
-        //
+        $ids = chatMember::all('chat_id')->where('id', '=', Auth::id());
+        $data = chat::find($ids);
+        echo $data;
+        // return view("name", $data)
     }
 
     /**
@@ -24,7 +29,7 @@ class ChatController extends Controller
      */
     public function create()
     {
-        //
+        echo "test";
     }
 
     /**
@@ -35,7 +40,9 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $chat = Chat::Create(['name' => $request->name]);
+        $member = chatMember::Create(['chat_id' => $chat->id, "user_id" => $request->member]);
+        //render view
     }
 
     /**
