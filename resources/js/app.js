@@ -6,7 +6,7 @@
 
 import Vue from "vue";
 import moment from "moment";
-import '../sass/app.scss'
+import '../sass/app.css'
 import { Form, HasError, AlertError } from "vform";
 window.Form = Form;
 
