@@ -19,7 +19,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="h-screen">
         <nav class="bg-gray-200">
             <div class="grid px-3 grid-cols-3 items-center">
                 <div class="col-span-1">
@@ -80,7 +80,7 @@
             </div>
         </nav>
 
-        <main class="mx-4">
+        <main class="mx-4 h-full">
             <router-view></router-view>
             @yield('content')
         </main>
