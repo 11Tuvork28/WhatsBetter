@@ -46,7 +46,7 @@ class InboxTest extends TestCase
     {
         $response = $this->post('/inbox');
         $inbox = Inbox::first();
-        $response->assertStatus(200);
+        $response->assertCreated();
         assertNotNull($inbox->user_id, User::first()->id);
     }
     public function test_inbox_deletion()

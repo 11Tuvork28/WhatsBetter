@@ -18,7 +18,7 @@ class ChatController extends Controller
     {
         $ids = chatMember::all('chat_id')->where('id', '=', Auth::id());
         $data = Chat::find($ids);
-        // return view("name", $data)
+        return $data;
     }
 
     /**
@@ -39,8 +39,13 @@ class ChatController extends Controller
     public function store(Request $request)
     {
         $chat = Chat::Create(['name' => $request->name]);
+        $user = chatMember::Create(['chat_id' => $chat->id, 'user_id' => Auth::id()]);
         $member = chatMember::Create(['chat_id' => $chat->id, "user_id" => $request->member]);
-        //render view
+        return response()->json([
+            'name' => $chat->name,
+            'chat_id' => $chat->id,
+            'members' => [$member->id, $user->id],
+        ],201);
     }
 
     /**

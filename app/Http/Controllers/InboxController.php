@@ -18,7 +18,7 @@ class InboxController extends Controller
     {
         $ids = inboxMessage::all('id')->where('user_id', '=', Auth::Id());
         $data = inbox::find($ids);
-        //render view
+        return $data;
     }
 
     /**
@@ -38,11 +38,12 @@ class InboxController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $inbox = Inbox::create(
             ['user_id' => Auth::id()]
         );
-        //render view
+        return response()->json([
+            'inbox_id' => $inbox->id,
+        ], 201);
     }
 
     /**
@@ -53,7 +54,8 @@ class InboxController extends Controller
      */
     public function show(inbox $inbox)
     {
-        //
+        $inbox = Inbox::findOrFail($inbox->id);
+        return $inbox;
     }
 
     /**

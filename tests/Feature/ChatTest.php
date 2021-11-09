@@ -44,7 +44,7 @@ class ChatTest extends TestCase
         $response = $this->json('POST', '/chat', ['member' => 1, 'name' => "test"]);
         $chat = chat::first();
         $members = chatMember::first();
-        $response->assertStatus(200);
+        $response->assertCreated();
         assertSame($chat->name, 'test');
         assertSame($members->chat_id, $chat->id);
     }
