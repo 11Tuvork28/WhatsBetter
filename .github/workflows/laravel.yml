@@ -20,6 +20,12 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress
       - name: Generate key
         run: php artisan key:generate
+      - name: Migrate
+        run: php artisan migrate
+      - name: Seed
+        run: php artisan db:seed
+      - name: Passport
+        run: php artisan passport:install
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
       - name: Create Database
