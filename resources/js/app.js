@@ -4,11 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require("./bootstrap");
-
 import Vue from "vue";
 import moment from "moment";
-
+import '../sass/app.scss'
 import { Form, HasError, AlertError } from "vform";
 window.Form = Form;
 
