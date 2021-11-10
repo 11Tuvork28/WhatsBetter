@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="grid grid-cols-4 h-full">
     <div class="relative col-span-1">
