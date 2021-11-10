@@ -39,12 +39,12 @@ class InboxTest extends TestCase
     public function test_inbox_viewable()
     {
         Inbox::factory()->count(10)->create();
-        $response = $this->get('/inbox');
+        $response = $this->get('/api/inbox');
         $response->assertStatus(200);
     }
     public function test_inbox_creation()
     {
-        $response = $this->post('/inbox');
+        $response = $this->post('/api/inbox');
         $inbox = Inbox::first();
         $response->assertCreated();
         assertNotNull($inbox->user_id, User::first()->id);
@@ -54,7 +54,7 @@ class InboxTest extends TestCase
         $this->withOutExceptionHandling();
         Inbox::factory()->create()->save();
         $inbox = Inbox::first();
-        $response = $this->delete('/inbox/' . $inbox->id);
+        $response = $this->delete('/api/inbox/' . $inbox->id);
         $response->assertStatus(200);
         assertNull(Inbox::first());
     }

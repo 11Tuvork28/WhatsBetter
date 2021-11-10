@@ -37,14 +37,14 @@ class MessageTest extends TestCase
      */
     public function test_see_all_users_messages()
     {
-        $response = $this->get('/message');
+        $response = $this->get('/api/message');
 
         $response->assertStatus(200);
     }
     public function test_write_a_message()
     {
         Chat::factory()->create()->save();
-        $response = $this->json('POST', '/message', ['sender_id' => User::first()->id, 'message' => "test", 'chat_id' => Chat::first()->id]);
+        $response = $this->json('POST', '/api/message', ['sender_id' => User::first()->id, 'message' => "test", 'chat_id' => Chat::first()->id]);
 
         $response->assertCreated();
     }
@@ -52,7 +52,7 @@ class MessageTest extends TestCase
     {
         message::factory()->create()->save();
         $message = message::first();
-        $response = $this->json('DELETE', '/message/' . $message->id);
+        $response = $this->json('DELETE', '/api/message/' . $message->id);
         $response->assertStatus(200);
         assertNull(message::first());
     }
