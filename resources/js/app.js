@@ -4,24 +4,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import * as vue from "vue";
+import * as Vue from "vue";
 import * as VueRouter from "vue-router";
-import '../css/app.css'
-import App from './components/App.vue';
-import VueProgressBar from "vue-progressbar";
-
-const app = vue.createApp(App).mount('#app')
 import routes from "./routes";
-
+import DropDown from './components/DropDown.vue';
 const router = VueRouter.createRouter({
-    mode: "history",
-    routes,
+    history: VueRouter.createWebHistory(),
+    routes: routes,
 });
-app.use(router);
-// Routes End
-app.use(VueProgressBar, {
-    color: "rgb(143, 255, 199)",
-    failedColor: "red",
-    height: "3px",
-});
-
+const app = Vue.createApp({}).use(router).component('drop-down-menu',DropDown).mount('#app');
