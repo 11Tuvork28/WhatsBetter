@@ -1,12 +1,18 @@
 <template>
     <div>
-        <Navbar />
+
     </div>
 </template>
 
-<script>
-import Navbar from "./Navigation.vue";
-export default {Navbar};
+<script lang="js">
+
+export default {
+    name: 'App',
+
+setup(){
+    return {};
+}
+};
 </script>
 
 <style></style>
