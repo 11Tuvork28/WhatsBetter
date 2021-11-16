@@ -56,7 +56,7 @@
                                             {{ __('Logout') }}
                                         </a>
 
-                                        
+
                                         <router-link to ="settings" class="dropdown-item">Settings</router-link>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
@@ -69,7 +69,6 @@
         </nav>
 
         <main class="relative mx-4 h-5/6">
-            <router-view></router-view>
             @yield('content')
         </main>
     </div>

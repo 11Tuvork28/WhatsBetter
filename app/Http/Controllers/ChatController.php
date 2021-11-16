@@ -45,7 +45,7 @@ class ChatController extends Controller
             'name' => $chat->name,
             'chat_id' => $chat->id,
             'members' => [$member->id, $user->id],
-        ],201);
+        ], 201);
     }
 
     /**
@@ -56,7 +56,12 @@ class ChatController extends Controller
      */
     public function show(chat $chats)
     {
-        //
+        $members = chatMember::all('user_id')->where('chat_id', '=', $chats->id);
+        return response()->json([
+            'name' => $chats->name,
+            'chat_id' => $chats->id,
+            'members' => $members,
+        ], 200);
     }
 
     /**
@@ -90,6 +95,6 @@ class ChatController extends Controller
      */
     public function destroy(chat $chats)
     {
-        //
+        chat::destroy($chats);
     }
 }

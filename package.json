@@ -10,6 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@vue/compiler-sfc": "^3.2.21",
         "autoprefixer": "^10.4.0",
         "axios": "^0.21",
         "cross-env": "^5.1",
@@ -26,12 +27,12 @@
         "@fortawesome/fontawesome-free": "^5.15.2",
         "@headlessui/vue": "^1.4.2",
         "@johmun/vue-tags-input": "^2.1.0",
-        "@vue/compiler-sfc": "^3.2.21",
-        "admin-lte": "^3.1.0",
         "laravel-vue-pagination": "^2.3.1",
         "vue": "^3.2.21",
         "vue-loader": "^16.8.3",
         "vue-progressbar": "^0.7.5",
-        "vue-router": "^4.0.12"
+        "vue-router": "^4.0.12",
+        "laravel-echo": "^1.5.0",
+        "pusher-js": "^4.3.1"
     }
 }
