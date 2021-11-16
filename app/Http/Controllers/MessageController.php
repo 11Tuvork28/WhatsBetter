@@ -45,6 +45,9 @@ class MessageController extends Controller
             'sender_id' => $user->id,
             'chat_id' => $chat->id
         ]);
+        broadcast(new MessageSent(auth()->user(), $message))->toOthers();
+
+        return ['status' => 'Message Sent!'];
     }
 
     /**
